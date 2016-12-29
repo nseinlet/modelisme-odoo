@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+      <record id="product_view" model="ir.ui.view">
+            <field name="name">product.customize.view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="priority">17</field>
+            <field name="arch" type="xml">
+               <div name="options" position="inside">
+                 <div>
+                    <field name="x_ismodele"/>
+                    <label for="x_ismodele"/>
+                </div>
+              </div>
+               <xpath expr="//page[@name='sales']" position="before">
+                 <page string="Scaled model" name="scaled_model" attrs="{'invisible': [('x_ismodele', '=', False)]}">
+                   <group col="4">
+                     <field name="x_model_location_id" readonly="1"/>
+                     <field name="x_model_scrap_location_id" readonly="1"/>
+                     <field name='x_model_move_ids' domain="[('location_dest_id', '=', x_model_location_id)]"/>
+                     <field name='x_model_move_ids' domain="[('location_dest_id', '=', x_model_scrap_location_id)]"/>
+                   </group>
+                 </page>
+               </xpath>
+             </field>
+      </record>
+    </data>
+</openerp>
