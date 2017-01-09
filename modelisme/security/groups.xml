@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="group_builders" model="res.groups">
+			<field name="name">Builders</field>
+			<field name="comment">Can create build for scaled models</field>
+		</record>
+	</data>
+</openerp>

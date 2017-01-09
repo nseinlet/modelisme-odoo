@@ -32,9 +32,12 @@ Modelisme
 Gerer les composant et le PR de modeles reduits
         """,
     'data': [
-        'modeles/product_template.xml',
+        'security/groups.xml',
+        'models/build.xml',
+        'models/product_template.xml',
+        'models/scale_op_wiz.xml',
         'views/product_template.xml',
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
        ],
     'depends' : ['base_action_rule'],
     'js': ['static/src/js/*.js'],

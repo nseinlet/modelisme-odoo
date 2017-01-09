@@ -22,6 +22,11 @@
                      <field name='x_model_move_ids' domain="[('location_dest_id', '=', x_model_scrap_location_id)]"/>
                    </group>
                  </page>
+                 <page string="Builds" name="scaled_model" attrs="{'invisible': [('x_ismodele', '=', False)]}">
+                   <group col="4">
+                     <field name="x_build_ids"/>
+                   </group>
+                 </page>
                </xpath>
              </field>
       </record>
