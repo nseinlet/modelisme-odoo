@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_move_tree_view" model="ir.ui.view">
+        <field name="name">stock.move.tree.view</field>
+        <field name="model">stock.move</field>
+        <field name="priority">8</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Moves" editable="bottom">
+                <field name="product_id"/>
+                <field name="name" invisible="1"/>
+                <field name="product_uom_qty"/>
+                <field name="product_uom" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="product.group_uom"/>
+                <field name="location_id" invisible="1"/>
+                <field name="create_date" invisible="1"/>
+                <field name="date_expected" invisible="1"/>
+                <field name="picking_type_id" invisible="1"/>
+                <button name="353" string="Scrap Products" type="action" icon="terp-gtk-jump-to-ltr" context="{'scrap': True}" states="draft,waiting,confirmed,assigned" groups="stock.group_stock_user"/>
+                <field name="scrapped" invisible="1"/>
+                <field name="availability" invisible="1"/>
+                <field name="reserved_availability" invisible="1"/>
+                <field name="location_dest_id" invisible="1"/>
+                <field name="remaining_qty" invisible="1"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

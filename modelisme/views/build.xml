@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="build_tree_view" model="ir.ui.view">
+        <field name="name">Build tree view</field>
+        <field name="model">x_scale_build</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="x_product_template_id"/>
+                <field name="x_name"/>
+                <field name="x_partner_id"/>
+                <field name="x_picking_ids" widget="many2many_tags"/>
+                <field name="x_state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="build_form_view" model="ir.ui.view">
+        <field name="name">Build form view</field>
+        <field name="model">x_scale_build</field>
+        <field name="arch" type="xml">
+            <form>
+              <header>
+                <field name="x_state" widget="statusbar"/>
+              </header>
+              <sheet>
+                <group col="4">
+                  <field name="x_name"/>
+                  <field name="x_partner_id"/>
+                  <field name="x_product_template_id"/>
+                  <field name="x_model_location_id" invisible="1"/>
+                </group>
+                <notebook>
+                  <page name="pickings" string="Pickings">
+                    <field name="x_picking_ids" context="{'default_picking_type_id': %(modelisme.picking_type_modelisme)d, 'default_location_dest_id': x_model_location_id}"/>
+                  </page>
+                  <!-- <page name="stock_moves" string="Stock moves">
+                    <field name="x_move_ids" readonly="1"/>
+                  </page> -->
+                </notebook>
+              </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

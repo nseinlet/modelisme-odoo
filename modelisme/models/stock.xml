@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="field_picking_build_id" model="ir.model.fields">
+        <field name="name">x_build_id</field>
+        <field name="field_description">Build</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="ttype">many2one</field>
+        <field name="relation">x_scale_build</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_move_build_id" model="ir.model.fields">
+        <field name="name">x_build_id</field>
+        <field name="field_description">Build</field>
+        <field name="model_id" ref="stock.model_stock_move"/>
+        <field name="ttype">many2one</field>
+        <field name="relation">x_scale_build</field>
+        <field name="related">picking_id.x_build_id</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_move_template_id" model="ir.model.fields">
+        <field name="name">x_template_id</field>
+        <field name="field_description">Product</field>
+        <field name="model_id" ref="stock.model_stock_move"/>
+        <field name="ttype">many2one</field>
+        <field name="relation">product.template</field>
+        <field name="related">picking_id.x_build_id.x_product_template_id</field>
+        <field name="state">manual</field>
+        <field name="store" eval="True"/>
+    </record>
+    <record id="field_move_cost" model="ir.model.fields">
+        <field name="name">x_cost</field>
+        <field name="field_description">Move cost</field>
+        <field name="model_id" ref="stock.model_stock_move"/>
+        <field name="ttype">float</field>
+        <field name="state">manual</field>
+    </record>
+
+    <!-- Actions -->
+    <record id="check_picking_dest" model="ir.actions.server">
+          <field name="name">Check picking destination</field>
+          <field name="model_id" ref="stock.model_stock_picking"/>
+          <field name="state">code</field>
+          <field name="code"><![CDATA[
+if object.x_build_id.x_product_template_id.x_ismodele and not object.location_dest_id.id in (object.x_build_id.x_product_template_id.x_model_location_id.id, object.x_build_id.x_product_template_id.x_model_scrap_location_id.id):
+    object.write({'location_dest_id': object.x_build_id.x_product_template_id.x_model_location_id.id})
+]]>
+          </field>
+      </record>
+
+      <!-- automated action -->
+      <record id="check_picking_dest_automated_action" model="base.action.rule">
+         <field name="name">Check picking destination</field>
+         <field name="model_id" ref="stock.model_stock_picking"/>
+         <field name="active" eval="True"/>
+         <field name="kind">on_create_or_write</field>
+         <field name="server_action_ids" eval="[(6, 0, [ref('check_picking_dest')])]"/>
+     </record>
+
+</odoo>

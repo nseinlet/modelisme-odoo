@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- window action -->
+    <record model="ir.actions.act_window" id="build_list_action">
+        <field name="name">Builds</field>
+        <field name="res_model">x_scale_build</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create the first build
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem name="Builds" parent="product.product_catalog_menu_product" action="build_list_action" sequence="20" id="menu_build_list"/>
+</odoo>

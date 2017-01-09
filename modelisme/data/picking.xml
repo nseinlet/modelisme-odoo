@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record model="ir.sequence" id="picking_type_modelisme_seq">
+    <field name="name">Modelisme</field>
+    <field name="implementation">standard</field>
+    <field name="code">Modelisme</field>
+  </record>
+  <record model="stock.picking.type" id="picking_type_modelisme">
+    <field name="name">Modelisme</field>
+    <field name="code">internal</field>
+    <field name="sequence_id" ref="picking_type_modelisme_seq"/>
+    <field name="warehouse_id" ref="stock.warehouse0"/>
+    <field name="default_location_src_id" ref="stock.stock_location_stock"/>
+  </record>
+</odoo>
